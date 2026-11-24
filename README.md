@@ -338,14 +338,16 @@ The testnet walkthrough above was rehearsed step by step on a local chain, with 
 
 ## Security review
 
-An independent review of the earlier version found no critical or high issues. In that version, tokens started on a separate bonding curve and moved into a pool at graduation. Its fixes carry over and are covered by tests:
+This is BurnRise's own review, not an independent audit. The summary for users is on the site: https://burnrise.fun/#security
+
+The review of the earlier version found no critical or high issues: one medium, two lows and seven informational notes. In that version, tokens started on a separate bonding curve and moved into a pool at graduation. Its fixes carry over and are covered by tests:
 - pay-ins always sync first;
 - pool swaps are all or nothing;
 - deferred payouts can go to another address;
 - everything works inside another Uniswap transaction;
 - fee-on-transfer pair tokens are rejected.
 
-The contracts have since been **redesigned**: tokens now launch straight into their Uniswap pool, and the hook now collects fees as Uniswap claims. A pre-audit self-review of the redesign (line-by-line reading, Slither, the stateful fuzzing above) found nothing that needs a code change. It doesn't replace a professional audit: have it audited before mainnet.
+The contracts have since been **redesigned**: tokens now launch straight into their Uniswap pool, and the hook now collects fees as Uniswap claims. A second review, of the redesign (line-by-line reading, Slither, the stateful fuzzing above), found no critical, high, medium or low issues, and four informational notes that need no code change. Each of Slither's results was checked by hand. Neither review replaces an independent audit.
 
 ## Known limits
 
